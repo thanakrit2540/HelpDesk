@@ -1,0 +1,173 @@
+﻿@page
+@model HelpDesk.Pages.Repairs.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<script>
+                                document.getElementById("name").innerHTML = "@Model.Employees[0].FirstName.ToString()";
+                                document.getElementById("lastname").innerHTML = "@Model.Employees[0].LastName.ToString()";
+                                document.getElementById("position").innerHTML = "@Model.Employees[0].Position.PositionName.ToString()";
+                                document.getElementById("name1").innerHTML = "@Model.Employees[0].FirstName.ToString()";
+                                document.getElementById("lastname1").innerHTML = "@Model.Employees[0].LastName.ToString()";
+                                document.getElementById("position1").innerHTML = "@Model.Employees[0].Position.PositionName.ToString()";
+</script>
+<h2 style="margin-left:15px">Delete</h2>
+
+<h3 style="margin-left:15px">Are you sure you want to delete this?</h3>
+<div id="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">HelpDesk</li>
+            <li class="breadcrumb-item active">Repair</li>
+            <li class="breadcrumb-item active">Delete</li>
+        </ol>
+        <div class="card border-danger mb-auto">
+            <div class="card-header">Delete</div>
+            <div class="card-body text-dark" style="text-align:center">
+                <p class="card-title">Are you sure you want to delete this?</p>
+                <dl class="dl-horizontal">
+
+
+                    <dd>
+                        <b>@Html.DisplayNameFor(model => model.Repair.RepairID) :</b>
+                        @Html.DisplayFor(model => model.Repair.RepairName)
+                    </dd>
+
+                    <dd>
+                        <b> @Html.DisplayNameFor(model => model.Repair.Type) :</b>
+
+                        @Html.DisplayFor(model => model.Repair.Type)
+                    </dd>
+
+                    <dd>
+                        <b>  @Html.DisplayNameFor(model => model.Repair.Status) :</b>
+
+                        @Html.DisplayFor(model => model.Repair.Status)
+                    </dd>
+
+                    <dd>
+                        <b> @Html.DisplayNameFor(model => model.Repair.Repair_ReportID) :</b>
+
+                        @Html.DisplayFor(model => model.Repair.Repair_ReportID.ReportID)
+                    </dd>
+
+                    <dd>
+                        <b> Repair by :</b>
+
+                        @Html.DisplayFor(model => model.Employee.FirstName)
+                        @Html.DisplayFor(model => model.Employee.LastName)
+                    </dd>
+
+                </dl>
+
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Repair.RepairID" />
+                    <div hidden class="form-group">
+                        <label asp-for="Repair.RepairName" class="control-label"></label>
+                        <input asp-for="Repair.RepairName" class="form-control" />
+                        <span asp-validation-for="Repair.RepairName" class="text-danger"></span>
+                    </div>
+                   
+                    <div hidden class="form-group">
+                        <label asp-for="Repair.Note" class="control-label"></label>
+                        <input asp-for="Repair.Note" class="form-control" />
+                        <span asp-validation-for="Repair.Note" class="text-danger"></span>
+                    </div>
+                    <div hidden class="form-group">
+                        <label asp-for="Repair.Type" class="control-label"></label>
+                        <input asp-for="Repair.Type" class="form-control" />
+                        <span asp-validation-for="Repair.Type" class="text-danger"></span>
+                    </div>
+                    <div hidden class="form-group">
+
+                        <input asp-for="Repair.Status" class="form-control" value="S3: Can't fix" />
+
+                    </div>
+                    <div hidden class="form-group">
+                        <label asp-for="Repair.ReportID" class="control-label"></label>
+                        <select asp-for="Repair.ReportID" class="form-control" asp-items="ViewBag.ReportID"></select>
+                        <span asp-validation-for="Repair.ReportID" class="text-danger"></span>
+                    </div>
+
+                    <div hidden class="form-group">
+                        <label asp-for="Repair.Repair_EmployeeID" class="control-label"></label>
+                        <input asp-for="Repair.Repair_EmployeeID" class="form-control" />
+                        <span asp-validation-for="Repair.Repair_EmployeeID" class="text-danger"></span>
+                    </div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Report.ReportID" />
+                    <div hidden class="form-group">
+                        <label asp-for="Report.ReportName" class="control-label"></label>
+                        <input asp-for="Report.ReportName" class="form-control" />
+                        <span asp-validation-for="Report.ReportName" class="text-danger"></span>
+                    </div>
+                    <div hidden class="form-group">
+                        <label asp-for="Report.Title" class="control-label"></label>
+                        <input asp-for="Report.Title" class="form-control" />
+                        <span asp-validation-for="Report.Title" class="text-danger"></span>
+                    </div>
+                    <div hidden class="form-group">
+                        <label asp-for="Report.Date" class="control-label"></label>
+                        <input asp-for="Report.Date" class="form-control" />
+                        <span asp-validation-for="Report.Date" class="text-danger"></span>
+                    </div>
+                    <div hidden class="form-group">
+                        <label asp-for="Report.Note" class="control-label"></label>
+                        <input asp-for="Report.Note" class="form-control" />
+                        <span asp-validation-for="Report.Note" class="text-danger"></span>
+                    </div>
+                    <div hidden class="form-group">
+                        <label asp-for="Report.Type" class="control-label"></label>
+                        <input asp-for="Report.Type" class="form-control"></input>
+                    </div>
+                    <div hidden class="form-group">
+
+                        <input asp-for="Report.Status" class="form-control" value="S3: Resolved" />
+
+                    </div>
+                    <div hidden class="form-group">
+                        <label asp-for="Report.AssetID" class="control-label"></label>
+                        <select asp-for="Report.AssetID" class="form-control" asp-items="ViewBag.AssetID"></select>
+                        <span asp-validation-for="Report.AssetID" class="text-danger"></span>
+                    </div>
+                    <div hidden class="form-group">
+
+                        <input hidden asp-for="Report.Report_EmployeeID" class="form-control" value=2 />
+
+                    </div>
+
+
+                    <a asp-page="./Index">Back to List  </a>
+
+                    @{ if (Model.Repair.Status != "S2: Sucessful")
+                        {
+                            <a asp-page="./ChangeStatus" asp-route-id=" @Model.Repair.RepairID"> | Change Status | </a>
+                        }
+
+                    }
+
+
+
+                    @{ if (Model.Repair.Status != "S2: Sucessful")
+                        {
+                            <input type="submit" value="Delete" class="btn btn-outline-danger" />
+                        }
+
+                    }
+
+
+
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<br />
+<br />
+

@@ -1,0 +1,116 @@
+﻿@page
+@model HelpDesk.Pages.Reports.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<script>
+                                document.getElementById("name").innerHTML = "@Model.Employees[0].FirstName.ToString()";
+                                document.getElementById("lastname").innerHTML = "@Model.Employees[0].LastName.ToString()";
+                                document.getElementById("position").innerHTML = "@Model.Employees[0].Position.PositionName.ToString()";
+                                document.getElementById("name1").innerHTML = "@Model.Employees[0].FirstName.ToString()";
+                                document.getElementById("lastname1").innerHTML = "@Model.Employees[0].LastName.ToString()";
+                                document.getElementById("position1").innerHTML = "@Model.Employees[0].Position.PositionName.ToString()";
+</script>
+<h2 style="margin-left:15px">Create</h2>
+
+<h4 style="margin-left:15px">Report</h4>
+<hr />
+<div id="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">HelpDesk</li>
+            <li class="breadcrumb-item active">Report</li>
+            <li class="breadcrumb-item active">Create</li>
+        </ol>
+        <form method="post">
+            <div class="card " style="margin-top:1%">
+                <div class="card-header">
+                    <b>General information</b>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+                                    <div class="form-group">
+                                        <label class="control-label" style="font-weight:bold">Report by:</label>
+
+                                        &nbsp; <label>@Model.Employee1.FirstName </label> <label> </label><label>@Model.Employee1.LastName</label>
+                                        <input hidden asp-for="Report.Report_EmployeeID" class="form-control" value=@Model.Employee1.EmployeeID readonly />
+
+                                    </div>
+                                    <br />
+                                    <div class="form-group">
+                                        <label asp-for="Report.Title" class="control-label" style="font-weight:bold"></label><b>:</b>
+                                        <input asp-for="Report.Title" class="form-control" maxlength="50" />
+                                        <span asp-validation-for="Report.Title" class="text-danger"></span>
+                                    </div>
+                                    <br />
+                                    <div class="form-group">
+                                        <label asp-for="Report.Note" class="control-label" style="font-weight:bold"></label><b>:</b>
+                                        <textarea asp-for="Report.Note" class="form-control" rows="5"></textarea>
+                                        <span asp-validation-for="Report.Note" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+
+                                </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+
+                                    <div class="form-group">
+                                        <label asp-for="Report.Status" class="control-label" style="font-weight:bold"></label><b>:</b>
+
+                                        &nbsp; <label>S1: New </label>
+                                        <input hidden asp-for="Report.Status" class="form-control" value="S1: New" readonly />
+                                    </div>
+                                    <br />
+                                    <div class="form-group">
+                                        <label asp-for="Report.Type" class="control-label" style="font-weight:bold"></label><b>:</b>
+                                        <select asp-for="Report.Type" class="form-control">
+                                            <option>Software</option>
+                                            <option>Hardware</option>
+                                            <option>Humanfalse</option>
+                                        </select>
+                                    </div>
+                                    <br />
+                                    <div class="form-group">
+                                        <label asp-for="Asset.AssetName" class="control-label" style="font-weight:bold"></label><b>:</b>
+                                        <select asp-for="Report.AssetID" class="form-control" asp-items="ViewBag.AssetID"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            <br />
+            <div class="form-group row" style=" margin-right:0% ; margin-top:1%">
+                <div class="col">
+                    <a asp-page="./Index"><button type="button" class="btn btn-link">< - - Back to List</button></a>
+                </div>
+                <div class="col">
+                    <input style="float:right" type="submit" value="Create" asp-route-id="@Model.Employee1.EmployeeID" class="btn btn-outline-secondary brands-modal" />
+                </div>
+                @Model.error
+
+            </div>
+        </form>
+
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

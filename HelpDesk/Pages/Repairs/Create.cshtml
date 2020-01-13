@@ -1,0 +1,132 @@
+﻿@page
+@model HelpDesk.Pages.Repairs.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<h2 style="margin-left:15px">Create</h2>
+
+<h4 style="margin-left:15px">Repair</h4>
+<hr />
+<div id="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">HelpDesk</li>
+            <li class="breadcrumb-item active">Repair</li>
+            <li class="breadcrumb-item active">Create</li>
+        </ol>
+        <form method="post">
+            <div class="card " style="margin-top:1%">
+                <div class="card-header">
+                    <b>
+                        General information
+                    </b>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                    <label asp-for="Repair.Date_Start" class="control-label"></label> :
+                                    <input asp-for="Repair.Date_Start" class="form-control" />
+
+                                    <span asp-validation-for="Repair.Date_Start" class="text-danger"></span>
+
+
+
+
+                                    <div class="form-group">
+
+                                        <input hidden asp-for="Repair.Status" class="form-control" value="Fixing" />
+
+                                    </div>
+                                    <div hidden class="form-group">
+                                        <label asp-for="Repair.ReportID" class="control-label"></label>
+                                        <select asp-for="Repair.ReportID" class="form-control" asp-items="ViewBag.ReportID"></select>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <input hidden asp-for="Repair.Repair_EmployeeID" class="form-control" value=@Model.Employee1.EmployeeID />
+
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+
+                                    <label asp-for="Repair.Type" class="control-label"></label> :
+
+                                    <select asp-for="Repair.Type" class="form-control">
+                                        <option>SoftWare</option>
+                                        <option>HardWare</option>
+                                        <option>Human False</option>
+                                    </select>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+            <div class="card " style="margin-top:1%">
+                <div class="card-header">
+                    <b>Note</b>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="Repair.Note" class="control-label"></label> :
+                                <textarea asp-for="Repair.Note" class="form-control" rows="5"></textarea>
+                                <span asp-validation-for="Repair.Note" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <br />
+
+            <div class="form-group row" style=" margin-right:0% ; margin-top:1%">
+                <div class="col">
+                    <a asp-page="./Index"><button type="button" class="btn btn-link">< - - Back to List</button></a>
+                </div>
+                <div class="col">
+                    <input style="float:right" type="submit" value="Create" class="btn btn-outline-secondary brands-modal" />
+                </div>
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

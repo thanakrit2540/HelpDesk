@@ -1,0 +1,16 @@
+﻿@page
+@model HelpDesk.Pages.Contects.ContectModel
+@{
+    ViewData["Title"] = "Contect";
+}
+
+<h2>Contect</h2>
+
+<form>
+    <label asp-for="mails.From"></label><input type="text" asp-for="mails.From"/><br /> 
+    <label asp-for="mails.To"></label><input type="text" asp-for="mails.To"/><br />
+ <label asp-for="mails.Subject"></label><input type="text" asp-for="mails.Subject"/><br />
+ <label asp-for="mails.Body"></label><textarea type="text" asp-for="mails.Body" ></textarea><br />
+    <input type="submit" />
+</form>
+

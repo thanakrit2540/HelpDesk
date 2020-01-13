@@ -1,0 +1,201 @@
+﻿@page
+@model HelpDesk.Pages.Reports.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<script>
+                                document.getElementById("name").innerHTML = "@Model.Employee2[0].FirstName.ToString()";
+                                document.getElementById("lastname").innerHTML = "@Model.Employee2[0].LastName.ToString()";
+                                document.getElementById("position").innerHTML = "@Model.Employee2[0].Position.PositionName.ToString()";
+                                document.getElementById("name1").innerHTML = "@Model.Employee2[0].FirstName.ToString()";
+                                document.getElementById("lastname1").innerHTML = "@Model.Employee2[0].LastName.ToString()";
+                                document.getElementById("position1").innerHTML = "@Model.Employee2[0].Position.PositionName.ToString()";
+</script>
+<h2 style="margin-left:15px">Details</h2>
+<h4 style="margin-left:15px">Report</h4>
+<hr />
+
+<div id="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">HelpDesk</li>
+            <li class="breadcrumb-item active">Report</li>
+            <li class="breadcrumb-item active">Detail</li>
+        </ol>
+        <div class="card ">
+            <div class="card-body">
+                <div>
+
+
+                    <div class=" col-md-12 col-lg-12 ">
+                        <table class="table table-user-information">
+                            <tbody>
+                                <tr>
+                                    <td><b>@Html.DisplayNameFor(model => model.Report.ReportID) :</b> </td>
+                                    <td> @Html.DisplayFor(model => model.Report.ReportName)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>@Html.DisplayNameFor(model => model.Report.Title) :</b> </td>
+                                    <td> @Html.DisplayFor(model => model.Report.Title)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>@Html.DisplayNameFor(model => model.Report.Date) :</b></td>
+                                    <td>@Html.DisplayFor(model => model.Report.Date)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>@Html.DisplayNameFor(model => model.Report.Type) :</b></td>
+                                    <td>@Html.DisplayFor(model => model.Report.Type)</td>
+                                </tr>
+
+                                <tr>
+                                <tr>
+                                    <td><b>@Html.DisplayNameFor(model => model.Report.Status) :</b></td>
+                                    <td>@Html.DisplayFor(model => model.Report.Status)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>@Html.DisplayNameFor(model => model.Report.Report_AssetID.AssetName) :</b></td>
+                                    <td>@Html.DisplayFor(model => model.Report.Report_AssetID.AssetName)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Report by :</b></td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.Employee.FirstName)
+                                        @Html.DisplayFor(model => model.Employee.LastName)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>@Html.DisplayNameFor(model => model.Report.Note) :</b> </td>
+                                    <td>
+
+                                        <div class="form-group">
+                                            <textarea class="form-control" id="exampleFormControlTextarea3" rows="5" cols='20'>@Html.DisplayFor(model => model.Report.Note)</textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div>
+                    <form method="post">
+                        <!--     Repair ( Create )           -->
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div hidden class="form-group">
+                            <label asp-for="Repair.Date_Start" class="control-label"></label>
+                            <input asp-for="Repair.Date_Start" class="form-control" />
+                            <span asp-validation-for="Repair.Date_Start" class="text-danger"></span>
+                        </div>
+                        <div hidden class="form-group">
+                            <label asp-for="Repair.Date_Finish" class="control-label"></label>
+                            <input asp-for="Repair.Date_Finish" class="form-control" />
+                            <span asp-validation-for="Repair.Date_Finish" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+
+                            <input hidden asp-for="Repair.Note" class="form-control" value="-" />
+
+                        </div>
+                        <div class="form-group">
+
+
+                            <input hidden asp-for="Repair.Type" class="form-control" value="-" />
+
+
+                        </div>
+                        <div class="form-group">
+
+                            <input hidden asp-for="Repair.Status" class="form-control" value="S1: On Fixing" />
+
+                        </div>
+                        <div class="form-group">
+
+                            <input hidden asp-for="Repair.ReportID" class="form-control" value=@Model.Report.ReportID />
+
+
+                        </div>
+                        <div class="form-group">
+
+
+                            <input hidden asp-for="Repair.Repair_EmployeeID" class="form-control" value=@Model.Employee1.EmployeeID />
+
+                        </div>
+                        <!--     Report ( Status -> In Process! )           -->
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Report.ReportID" />
+                        <div hidden class="form-group">
+                            <label asp-for="Report.ReportName" class="control-label"></label>
+                            <input asp-for="Report.ReportName" class="form-control" />
+                            <span asp-validation-for="Report.ReportName" class="text-danger"></span>
+                        </div>
+                        <div hidden class="form-group">
+                            <label asp-for="Report.Title" class="control-label"></label>
+                            <input asp-for="Report.Title" class="form-control" />
+                            <span asp-validation-for="Report.Title" class="text-danger"></span>
+                        </div>
+                        <div hidden class="form-group">
+                            <label asp-for="Report.Date" class="control-label"></label>
+                            <input asp-for="Report.Date" class="form-control" />
+                            <span asp-validation-for="Report.Date" class="text-danger"></span>
+                        </div>
+                        <div hidden class="form-group">
+                            <label asp-for="Report.Note" class="control-label"></label>
+                            <input asp-for="Report.Note" class="form-control" />
+                            <span asp-validation-for="Report.Note" class="text-danger"></span>
+                        </div>
+                        <div hidden class="form-group">
+                            <label asp-for="Report.Type" class="control-label"></label>
+                            <input asp-for="Report.Type" class="form-control"></input>
+                        </div>
+                        <div class="form-group">
+
+                            <input hidden asp-for="Report.Status" class="form-control" value="S2: In Process" />
+
+                        </div>
+                        <div hidden class="form-group">
+                            <label asp-for="Report.AssetID" class="control-label"></label>
+                            <select asp-for="Report.AssetID" class="form-control" asp-items="ViewBag.AssetID"></select>
+                            <span asp-validation-for="Report.AssetID" class="text-danger"></span>
+                        </div>
+                        <div hidden class="form-group">
+                            <label asp-for="Report.Report_EmployeeID" class="control-label"></label>
+                            <input asp-for="Report.Report_EmployeeID" class="form-control" />
+                            <span asp-validation-for="Report.Report_EmployeeID" class="text-danger"></span>
+                        </div>
+
+                        @{ if (Model.Report.Status == "S1: New")
+                            {
+                                @if (Model.Employee1.Position.PositionID == 1)
+                                {
+                                    <div class="form-group">
+
+                                        <input type="submit" value="Select" class="btn btn-outline-secondary brands-modal" style="margin-left:15px" />
+
+                                    </div>
+                                }
+
+                            }
+
+                        }
+
+                    </form>
+                </div>
+
+
+            </div>
+
+        </div>
+        <br />
+        <br />
+        <div>
+
+            <a asp-page="./Index">< - - Back to List</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    Layout = "~/Pages/Shared/_Login.cshtml";
+}
+
+<div class="card card-login mx-auto mt-5">
+    <div class="card-header">
+        <div class="text-center">
+
+            <h1 class="h4 text-gray-900">Welcome TBKK</h1>
+        </div>
+    </div>
+    <div class="card-body ">
+        <form method="post">
+            <div class="form-group">
+
+                <input type="text" asp-for="Login.Username" name="Username" class="form-control" placeholder="ID..." aria-label="Search" aria-describedby="basic-addon2">
+
+
+            </div>
+            <div class="form-group">
+
+                <input type="password" asp-for="Login.Password" name="Password" class="form-control" placeholder="Pass..." required="required">
+
+
+            </div>
+
+            <input type="submit" value="Login" class="btn btn-primary btn-block">
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

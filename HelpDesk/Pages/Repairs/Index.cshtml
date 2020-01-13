@@ -1,0 +1,185 @@
+﻿@page
+@model HelpDesk.Pages.Repairs.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+    <script>
+                                document.getElementById("name").innerHTML = "@Model.Employees[0].FirstName.ToString()";
+                                document.getElementById("lastname").innerHTML = "@Model.Employees[0].LastName.ToString()";
+                                document.getElementById("position").innerHTML = "@Model.Employees[0].Position.PositionName.ToString()";
+                                document.getElementById("name1").innerHTML = "@Model.Employees[0].FirstName.ToString()";
+                                document.getElementById("lastname1").innerHTML = "@Model.Employees[0].LastName.ToString()";
+                                document.getElementById("position1").innerHTML = "@Model.Employees[0].Position.PositionName.ToString()";
+    </script>
+<h2 style="margin-left:15px">Repair</h2>
+<div id="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">HelpDesk</li>
+            <li class="breadcrumb-item active">Repair</li>
+           
+        </ol>
+        <!-- DataTables Example -->
+        <div class="card mb-3">
+            <div class="card-header">
+                <div class="dataTable_length">
+                    <i class="fas fa-hammer">&nbsp;Repair</i>
+                    <div hidden style="float: right">
+                        <a asp-page="Create">
+                            <button type="button" class="btn btn-outline-secondary brands-modal">
+
+                                Create
+                            </button>
+                        </a>
+                        <!--<a class="btn btn-info" asp-page="Create">Create New</a>-->
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Repair[0].RepairID)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Repair[0].Date_Start)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Repair[0].Date_Finish)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Repair[0].Type)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Repair[0].Status)
+                                </th>
+                                <th>
+                                    AssetID
+                                </th>
+                                <th>
+                                    Repair by
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ var i = 0;}
+                            @foreach (var item in Model.Repair)
+                            {
+                               
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RepairName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Date_Start)
+                                </td>
+
+
+
+                                @if (item.Status == "S1: On Fixing")
+                                {
+                                    <td align="center">
+                                        -
+                                    </td>
+                                }
+                                else if (item.Status == "S2: Sucessful" || item.Status == "S3: Can't fix")
+                                {
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Date_Finish)
+                                    </td>
+                                }
+
+
+
+
+                                @if (item.Type == "-")
+                                {
+                            <td align="center">
+                                @Html.DisplayFor(modelItem => item.Type)
+                            </td>
+                                }
+                                else
+                                {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Type)
+                            </td>
+
+                                        }
+                                       
+
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Status)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Repair_ReportID.Report_AssetID.AssetName)
+                                    </td>
+                                    <td>
+                                        @foreach (var item1 in Model.Employee)
+                                        {
+                                            if (item1.EmployeeID == item.Repair_EmployeeID)
+                                            {
+                                                @Html.DisplayFor(modelItem => item1.FirstName);
+                                                <a></a> @Html.DisplayFor(modelItem => item1.LastName);
+                                            }
+                                        }
+
+
+
+                                    </td>
+                                    <td align="center">
+                                        @{ if (Model.Repair[i].Status == "S2: Sucessful")
+                                            {
+
+                                            }
+                                            else if (Model.Repair[i].Status == "S3: Can't fix")
+                                            {
+
+                                            }
+                                            else
+                                            {
+                                                <a asp-page="./Edit" asp-route-id="@item.RepairID">Manage</a>
+                                                <label>| </label>
+                                            }
+
+
+                                        }
+
+                                        <a asp-page="./Details" asp-route-id="@item.RepairID">Details</a>
+                                        @{ if (Model.Repair[i].Status == "S2: Sucessful")
+                                            {
+
+                                            }
+                                            else if (Model.Repair[i].Status == "S3: Can't fix")
+                                            {
+
+                                            }
+                                            else
+                                            {
+                                                <a>|</a> <a asp-page="./Delete" asp-route-id="@item.RepairID"> Delete</a>
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                                
+
+                                i++;
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

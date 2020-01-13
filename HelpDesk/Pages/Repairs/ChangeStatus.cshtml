@@ -1,0 +1,153 @@
+﻿@page
+@model HelpDesk.Pages.Repairs.ChangeStatusModel
+
+@{
+    ViewData["Title"] = "ChangeStatus";
+}
+
+
+<script>
+                                document.getElementById("name").innerHTML = "@Model.Employees[0].FirstName.ToString()";
+                                document.getElementById("lastname").innerHTML = "@Model.Employees[0].LastName.ToString()";
+                                document.getElementById("position").innerHTML = "@Model.Employees[0].Position.PositionName.ToString()";
+                                document.getElementById("name1").innerHTML = "@Model.Employees[0].FirstName.ToString()";
+                                document.getElementById("lastname1").innerHTML = "@Model.Employees[0].LastName.ToString()";
+                                document.getElementById("position1").innerHTML = "@Model.Employees[0].Position.PositionName.ToString()";
+</script>
+<h2 style="margin-left:15px">ChangeStatus</h2>
+
+<h4 style="margin-left:15px">Repair</h4>
+<hr />
+<div id="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">HelpDesk</li>
+            <li class="breadcrumb-item active">Repair</li>
+            <li class="breadcrumb-item active">Delete</li>
+            <li class="breadcrumb-item active">ChangeStatus</li>
+        </ol>
+        <form method="post">
+            <div class="card " style="margin-top:1%">
+                <div class="card-header">
+                    <b>Status</b>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Repair.RepairID" />
+                            <div hidden class="form-group">
+                                <label asp-for="Repair.RepairName" class="control-label"></label> :
+                                <input asp-for="Repair.RepairName" class="form-control" />
+                                <span asp-validation-for="Repair.RepairName" class="text-danger"></span>
+                            </div>
+                            <div hidden class="form-group">
+                                <label asp-for="Repair.Date_Start" class="control-label"></label> :
+                                <input asp-for="Repair.Date_Start" class="form-control" />
+                                <span asp-validation-for="Repair.Date_Start" class="text-danger"></span>
+                            </div>
+
+                            <div hidden class="form-group">
+                               
+                                <input hidden asp-for="Repair.Date_Finish" class="form-control" />
+                                
+                            </div>
+
+                            <div hidden class="form-group">
+                                <label asp-for="Repair.Type" class="control-label"></label>
+                                <input asp-for="Repair.Type" class="form-control" />
+                                <span asp-validation-for="Repair.Type" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Repair.Status" class="control-label"></label> :
+                                <select asp-for="Repair.Status" class="form-control" style="width:200px">
+                                    <option>S3: Can't fix</option>
+                                    <option>S4: Take a long time</option>
+                                </select>
+
+
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Repair.Note" class="control-label"></label> :
+                                <textarea asp-for="Repair.Note" class="form-control" rows="5"></textarea>
+                                <span asp-validation-for="Repair.Note" class="text-danger"></span>
+                            </div>
+                            <div hidden class="form-group">
+                                <label asp-for="Repair.ReportID" class="control-label"></label>
+                                <select asp-for="Repair.ReportID" class="form-control" asp-items="ViewBag.ReportID"></select>
+                                <span asp-validation-for="Repair.ReportID" class="text-danger"></span>
+                            </div>
+                            <div hidden class="form-group">
+                                <label asp-for="Repair.Repair_EmployeeID" class="control-label"></label>
+                                <input asp-for="Repair.Repair_EmployeeID" class="form-control" />
+                                <span asp-validation-for="Repair.Repair_EmployeeID" class="text-danger"></span>
+                            </div>
+
+
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Report.ReportID" />
+                            <div hidden class="form-group">
+                                <label asp-for="Report.ReportName" class="control-label"></label>
+                                <input asp-for="Report.ReportName" class="form-control" />
+                                <span asp-validation-for="Report.ReportName" class="text-danger"></span>
+                            </div>
+                            <div hidden class="form-group">
+                                <label asp-for="Report.Title" class="control-label"></label>
+                                <input asp-for="Report.Title" class="form-control" />
+                                <span asp-validation-for="Report.Title" class="text-danger"></span>
+                            </div>
+                            <div hidden class="form-group">
+                                <label asp-for="Report.Date" class="control-label"></label>
+                                <input asp-for="Report.Date" class="form-control" />
+                                <span asp-validation-for="Report.Date" class="text-danger"></span>
+                            </div>
+                            <div hidden class="form-group">
+                                <label asp-for="Report.Note" class="control-label"></label>
+                                <textarea asp-for="Report.Note" class="form-control" rows="5"></textarea>
+                                <span asp-validation-for="Report.Note" class="text-danger"></span>
+                            </div>
+                            <div hidden class="form-group">
+                                <label asp-for="Report.Type" class="control-label"></label>
+                                <input asp-for="Report.Type" class="form-control" />
+                            </div>
+                            <div class="form-group">
+
+                                <input hidden asp-for="Report.Status" class="form-control" value="S3: Resolved" />
+
+                            </div>
+                            <div hidden class="form-group">
+                                <label asp-for="Report.AssetID" class="control-label"></label>
+                                <select asp-for="Report.AssetID" class="form-control" asp-items="ViewBag.AssetID"></select>
+                                <span asp-validation-for="Report.AssetID" class="text-danger"></span>
+                            </div>
+                            <div hidden class="form-group">
+                                <label asp-for="Report.Report_EmployeeID" class="control-label"></label>
+                                <input asp-for="Report.Report_EmployeeID" class="form-control" />
+                                <span asp-validation-for="Report.Report_EmployeeID" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-outline-secondary brands-modal" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+        </form>
+
+    </div>
+    <br />
+    <br />
+    <div style="float: left">
+
+        <a asp-page="Index">< - - Back to List</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
