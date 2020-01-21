@@ -4,6 +4,14 @@
     ViewData["Title"] = "Summary";
 }
 
+<script>
+                                document.getElementById("name").innerHTML = "@Model.Employees[0].FirstName.ToString()";
+                                document.getElementById("lastname").innerHTML = "@Model.Employees[0].LastName.ToString()";
+                                document.getElementById("position").innerHTML = "@Model.Employees[0].Position.PositionName.ToString()";
+                                document.getElementById("name1").innerHTML = "@Model.Employees[0].FirstName.ToString()";
+                                document.getElementById("lastname1").innerHTML = "@Model.Employees[0].LastName.ToString()";
+                                document.getElementById("position1").innerHTML = "@Model.Employees[0].Position.PositionName.ToString()";
+</script>
 <!DOCTYPE html>
 
 
@@ -28,7 +36,7 @@
                     <h1 style="color:orange">@Model.Repair_OnFix.Count()</h1>
                 </div>
                 <div class="card-header" style="background-color:orange;color:white">
-                    <b>On Fix</b>
+                    <b>On Fixing</b>
                 </div>
             </div>
         </div>
@@ -74,33 +82,118 @@
                     <b>Group</b>
                 </div>
                 <div class="form-group">
-                   
+                    <canvas id="myPieChart1"></canvas>
                 </div>
 
             </div>
 
         </div>
+
         <div class="col" style="margin-right: 10px">
             <div class="card">
                 <div class="card-header" style="background-color:orange;color:white">
                     <b>Most Repair</b>
                 </div>
-                <div class="form-group" style="text-align:left; margin-left:20px">
+                <div class="form-group" style="text-align:center; margin-left:20px">
                     <br />
-                    @for (int i = 1; i < 6; i++)
+
+                  @{ int c = 1;}
+                    @for (int i = 0; i < Model.Report_AssetName.Count(); i++)
                     {
-                        <h3 style="color:orange">@i .  </h3>
+
+                        <h3 style="color:orange">@c. - > @Model.Report_Asset_Count[i].Reports -------- @Model.Report_Asset_Count[i].count</h3>
+                      c++;
+                    }
+                    @if(@Model.Report_AssetName.Count < 5){
+                    @for (int i = Model.Report_AssetName.Count+1; i <= 5; i++)
+                    {
+                        <h3 style="color:orange">@i. ---------------------</h3>
+                    }
                     }
 
-                   
+
+
+
                 </div>
 
             </div>
         </div>
-        
+
     </div>
 </div>
 
+@{
+   
+    var data = new List<double>() { Model.Report_New.Count,Model.Repair_Close.Count,Model.Repair_OnFix.Count,Model.Repair_Succesful.Count };
+  
+
+
+}
+<script type="text/javascript">
+    var ctx = document.getElementById("myPieChart1");
+
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ["New", "Close", "On Fixing", "Succesful"],
+            datasets: [{
+                data:@Html.Raw(Json.Serialize(data)),
+                backgroundColor: ['#007bff', '#ff5c00', '#ffc107', '#28a745'],
+            }],
+        },
+    });
+
+</script>
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    @*Chart*@
+    <script>
+        var options1 = {
+            animationEnabled: true,
+            title: {
+                text: "Product Sales"
+            },
+            axisX: {
+                interval: 1,
+            },
+            axisY: {
+                // suffix: "%"
+            },
+            toolTip: {
+                shared: true
+            },
+            legend: {
+                reversed: true,
+                //verticalAlign: "center",
+                // horizontalAlign: "right"
+            },
+            data: []
+
+        };
+        var ctx1 = document.getElementById("ProductSales");
+        $().ready(function () {
+            {
+                $.get('/api/Repairs').done(function (response) {
+                    let data = {
+                        type: "column",
+                        name: "Total Sales",
+                        showInLegend: true,
+                        indexLabel: "{y}",
+                        yValueFormatString: "฿ #,##0",
+                        dataPoints: []
+                    };
+                    $.each(response[0], function (index, d) {
+                        data.dataPoints.push({ y: d.y, x: d.x });
+                    })
+                    console.log(data);
+                    options1.data.push(data);
+
+                    var chart = new CanvasJS.Chart("ProductSales", options1);
+                    chart.render();
+                });
+            }
+        });
+    </script>
 }

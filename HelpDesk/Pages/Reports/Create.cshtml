@@ -50,7 +50,7 @@
                                     <br />
                                     <div class="form-group">
                                         <label asp-for="Report.Title" class="control-label" style="font-weight:bold"></label><b>:</b>
-                                        <input asp-for="Report.Title" class="form-control" maxlength="50" />
+                                        <input asp-for="Report.Title" class="form-control" maxlength="50" placeholder="Title"/>
                                         <span asp-validation-for="Report.Title" class="text-danger"></span>
                                     </div>
                                     <br />
@@ -77,16 +77,19 @@
                                     <br />
                                     <div class="form-group">
                                         <label asp-for="Report.Type" class="control-label" style="font-weight:bold"></label><b>:</b>
-                                        <select asp-for="Report.Type" class="form-control">
-                                            <option>Software</option>
-                                            <option>Hardware</option>
-                                            <option>Humanfalse</option>
-                                        </select>
+                                                                                                                            <select asp-for="Report.Type" class="form-control">
+                                                                                                                                <option selected value="@null">Please select</option>
+                                                                                                                                <option>Software</option>
+                                                                                                                                <option>Hardware</option>
+                                                                                                                                <option>Humanfalse</option>
+                                                                                                                            </select>
                                     </div>
                                     <br />
                                     <div class="form-group">
                                         <label asp-for="Asset.AssetName" class="control-label" style="font-weight:bold"></label><b>:</b>
-                                        <select asp-for="Report.AssetID" class="form-control" asp-items="ViewBag.AssetID"></select>
+                                                                                                                                <select asp-for="Report.AssetID" class="form-control" asp-items="ViewBag.AssetID">
+                                                                                                                                    <option selected value="@null">Please select</option>
+                                                                                                                                </select>
                                     </div>
                                 </div>
                             </div>

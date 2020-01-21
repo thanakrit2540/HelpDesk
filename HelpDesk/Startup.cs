@@ -64,6 +64,9 @@ namespace HelpDesk
             {
                 endpoints.MapRazorPages();
             });
+
+           
+
         }
     }
 }
