@@ -81,6 +81,7 @@ namespace HelpDesk
                     if (Report_AssetName.Count == 0)
                     {
                         Report_AssetName.Add(item2.Report_AssetID.AssetName);
+                        flag = true;
                     }
                     else
                     {

@@ -45,6 +45,8 @@ namespace HelpDesk.Pages.Repairs
                 .Include(r => r.Repair_ReportID)
                 .ToListAsync();
 
+          
+
             Repair1 = await _context.Repair.ToListAsync();
 
             Employee = await _context.Employee.ToListAsync();

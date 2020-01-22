@@ -83,7 +83,7 @@ namespace HelpDesk.Pages.Repairs
         {
 
             DateTime date = DateTime.Now;
-            Repair.Date_Start = new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
+            Repair.Date_Finish = new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
 
             Report.Date = new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
 

@@ -290,7 +290,6 @@ namespace HelpDesk.Migrations
                     Title = table.Column<string>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
                     Note = table.Column<string>(nullable: true),
-                    Type = table.Column<string>(nullable: false),
                     Status = table.Column<string>(nullable: false),
                     AssetID = table.Column<int>(nullable: false),
                     Report_EmployeeID = table.Column<int>(nullable: false)

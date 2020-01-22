@@ -12,114 +12,160 @@
                                 document.getElementById("lastname1").innerHTML = "@Model.Employees[0].LastName.ToString()";
                                 document.getElementById("position1").innerHTML = "@Model.Employees[0].Position.PositionName.ToString()";
 </script>
-<!DOCTYPE html>
+
 
 
 <div class="card-body">
-    <div class="row" style="text-align:center">
-        <div class="col-sm-2" style="margin-right: 30px">
-            <div class="card" style="width: 200px">
-                <div class="form-group">
-                    <br />
-                    <h1 style="color:dodgerblue">@Model.Report_New.Count()</h1>
-                </div>
-                <div class="card-header" style="background-color:dodgerblue;color:white">
-                    <b>New</b>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-sm-2" style="margin-right: 30px">
-            <div class="card" style="width: 200px">
-                <div class="form-group">
-                    <br />
-                    <h1 style="color:orange">@Model.Repair_OnFix.Count()</h1>
-                </div>
-                <div class="card-header" style="background-color:orange;color:white">
-                    <b>On Fixing</b>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-2" style="margin-right: 30px">
-            <div class="card" style="width: 200px">
-                <div class="form-group">
-                    <br />
-                    <h1 style="color:orangered">@Model.Repair_Close.Count()</h1>
-                </div>
-                <div class="card-header" style="background-color:orangered;color:white">
-                    <b>Close</b>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-2" style="margin-right: 30px">
-            <div class="card" style="width: 200px">
-                <div class="form-group">
-                    <br />
-                    <h1 style="color:forestgreen">@Model.Repair_Succesful.Count()</h1>
-                </div>
-                <div class="card-header" style="background-color:forestgreen;color:white">
-                    <b>Succesful</b>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <div class="card" style="width: 200px">
-                <div class="form-group">
-                    <br />
-                    <h1 style="color:lightskyblue">@Model.Report.Count()</h1>
-                </div>
-                <div class="card-header" style="background-color:lightskyblue;color:white">
-                    <b>All</b>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br />
-    <div class="row" style="text-align:center">
-        <div class="col" style="margin-right: 10px">
-            <div class="card" style="height:300px">
-                <div class="card-header" style="background-color:dodgerblue;color:white">
-                    <b>Group</b>
-                </div>
-                <div class="form-group">
-                    <canvas id="myPieChart1"></canvas>
+    
+        <div class="row" style="text-align:center">
+            <div class="col-sm-2" style="margin-right: 30px">
+                <div class="card" style="width: 200px">
+                    <div class="form-group">
+                        <br />
+                        <h1 style="color:dodgerblue">@Model.Report_New.Count()</h1>
+                    </div>
+                    <div class="card-header" style="background-color:dodgerblue;color:white">
+                        <b>New report</b>
+                    </div>
                 </div>
 
             </div>
-
-        </div>
-
-        <div class="col" style="margin-right: 10px">
-            <div class="card">
-                <div class="card-header" style="background-color:orange;color:white">
-                    <b>Most Repair</b>
+            <div class="col-sm-2" style="margin-right: 30px">
+                <div class="card" style="width: 200px">
+                    <div class="form-group">
+                        <br />
+                        <h1 style="color:orange">@Model.Repair_OnFix.Count()</h1>
+                    </div>
+                    <div class="card-header" style="background-color:orange;color:white">
+                        <b>On Fixing</b>
+                    </div>
                 </div>
-                <div class="form-group" style="text-align:center; margin-left:20px">
-                    <br />
+            </div>
+            <div class="col-sm-2" style="margin-right: 30px">
+                <div class="card" style="width: 200px">
+                    <div class="form-group">
+                        <br />
+                        <h1 style="color:orangered">@Model.Repair_Close.Count()</h1>
+                    </div>
+                    <div class="card-header" style="background-color:orangered;color:white">
+                        <b>Can't fix</b>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2" style="margin-right: 30px">
+                <div class="card" style="width: 200px">
+                    <div class="form-group">
+                        <br />
+                        <h1 style="color:forestgreen">@Model.Repair_Succesful.Count()</h1>
+                    </div>
+                    <div class="card-header" style="background-color:forestgreen;color:white">
+                        <b>Succesful</b>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2" style="margin-right:0">
+                <div class="card" style="width: 200px">
+                    <div class="form-group">
+                        <br />
+                        <h1 style="color:lightskyblue">@Model.Report.Count()</h1>
+                    </div>
+                    <div class="card-header" style="background-color:lightskyblue;color:white">
+                        <b>All</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+            <br />
+            <div class="row" style="text-align:center">
+                <div class="col" style="margin-right: 10px">
+                    <div class="card" style="height:335px">
+                        <div class="card-header" style="background-color:dodgerblue;color:white">
+                            <b>Group</b>
+                        </div>
+                        <center>
+                            <div class="form-group" style="width:500px;height:300px;margin-top:20px">
+                                <canvas id="myPieChart1"></canvas>
+                            </div>
+                        </center>
 
-                  @{ int c = 1;}
-                    @for (int i = 0; i < Model.Report_AssetName.Count(); i++)
-                    {
 
-                        <h3 style="color:orange">@c. - > @Model.Report_Asset_Count[i].Reports -------- @Model.Report_Asset_Count[i].count</h3>
-                      c++;
-                    }
-                    @if(@Model.Report_AssetName.Count < 5){
-                    @for (int i = Model.Report_AssetName.Count+1; i <= 5; i++)
-                    {
-                        <h3 style="color:orange">@i. ---------------------</h3>
-                    }
-                    }
+                    </div>
+
+                </div>
+
+                <div class="col" style="margin-right: 10px">
+
+                    <div class="card-header" style="background-color:orange;color:white">
+                        <b>Most Repair</b>
+                    </div>
+                    <table class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    AssetID
+                                </th>
+                                <th>
+                                    Count
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @{ var c = 1;}
+                            @for (int i = 0; i < Model.Report_AssetName.Count(); i++)
+                            {
+                                @if (c<=5)
+                                {
+                            <tr>
+                                @if (i==0)
+                                {
+                                    <td>
+                                        @Model.Report_Asset_Count[i].Reports <i class='fas fa-award' style='font-size:16px'></i>
+                                    </td>
+                                }
+                                else
+                                {
+                            <td>
+                                 @Model.Report_Asset_Count[i].Reports
+                            </td>
+                                }
+
+                                <td>
+                                    @Model.Report_Asset_Count[i].count
+                                </td>
+                            </tr>
+                                }
+                                c++;
+                            }
+                            @if (@Model.Report_AssetName.Count < 5)
+                            {
+                                @for (int j = Model.Report_AssetName.Count + 1; j <= 5; j++)
+                                {
+                                    <tr>
+                                        <td>
+                                            -
+                                        </td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+
+                                }
+                            }
 
 
+
+                        </tbody>
+
+
+
+                    </table>
 
 
                 </div>
 
             </div>
-        </div>
-
-    </div>
 </div>
 
 @{
@@ -135,7 +181,7 @@
     var myPieChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ["New", "Close", "On Fixing", "Succesful"],
+            labels: ["New report", "Can't fix", "On Fixing", "Succesful"],
             datasets: [{
                 data:@Html.Raw(Json.Serialize(data)),
                 backgroundColor: ['#007bff', '#ff5c00', '#ffc107', '#28a745'],

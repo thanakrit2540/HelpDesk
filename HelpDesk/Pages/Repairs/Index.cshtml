@@ -86,13 +86,13 @@
 
 
 
-                                @if (item.Status == "S1: On Fixing")
+                                @if (item.Type == "-")
                                 {
                                     <td align="center">
                                         -
                                     </td>
                                 }
-                                else if (item.Status == "S2: Sucessful" || item.Status == "S3: Can't fix")
+                                else if (item.Status == "S2: Sucessful" || item.Status == "S3: Can't fix" || item.Type != "-")
                                 {
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Date_Finish)

@@ -75,16 +75,8 @@
                                         <input hidden asp-for="Report.Status" class="form-control" value="S1: New" readonly />
                                     </div>
                                     <br />
-                                    <div class="form-group">
-                                        <label asp-for="Report.Type" class="control-label" style="font-weight:bold"></label><b>:</b>
-                                                                                                                            <select asp-for="Report.Type" class="form-control">
-                                                                                                                                <option selected value="@null">Please select</option>
-                                                                                                                                <option>Software</option>
-                                                                                                                                <option>Hardware</option>
-                                                                                                                                <option>Humanfalse</option>
-                                                                                                                            </select>
-                                    </div>
-                                    <br />
+                                   
+                                   
                                     <div class="form-group">
                                         <label asp-for="Asset.AssetName" class="control-label" style="font-weight:bold"></label><b>:</b>
                                                                                                                                 <select asp-for="Report.AssetID" class="form-control" asp-items="ViewBag.AssetID">

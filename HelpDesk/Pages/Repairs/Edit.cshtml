@@ -41,30 +41,33 @@
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <input type="hidden" asp-for="Repair.RepairID" />
 
-                                    <label asp-for="Repair.Date_Start" class="control-label"></label> :
-                                    <input asp-for="Repair.Date_Start" class="form-control" />
-                                    <span asp-validation-for="Repair.Date_Start" class="text-danger"></span>
+                                    <label class="control-label" style="font-weight:bold">Repair by:</label>
+                                    &nbsp; <label>@Model.Employee1.FirstName </label> <label> </label><label>@Model.Employee1.LastName</label>
+                                    <input hidden asp-for="Repair.Repair_EmployeeID" class="form-control" value=@Model.Employee1.EmployeeID />
+                                    <br />
+                                    <br />
+                                    <input hidden asp-for="Repair.RepairName" class="form-control" />
+
+                                    <label class="control-label" style="font-weight:bold">Datr_Start:</label>
+                                    &nbsp; <label>@Model.Repair.Date_Start </label>
+                                    <input hidden asp-for="Repair.Date_Start" class="form-control" />
+                                    <br />
+                                    <br />
+
+                                    <label asp-for="Repair.Date_Finish" class="control-label" style="font-weight:bold"> </label> :
+                                    <input asp-for="Repair.Date_Finish" class="form-control" />
+                                    <span asp-validation-for="Repair.Date_Finish" class="text-danger"></span>
 
 
 
 
 
-
-                                    <div hidden class="form-group">
-
-                                        <input asp-for="Repair.Status" class="form-control" value="S1: On Fixing" />
-
-                                    </div>
                                     <div hidden class="form-group">
                                         <label asp-for="Repair.ReportID" class="control-label"></label>
                                         <select asp-for="Repair.ReportID" class="form-control" asp-items="ViewBag.ReportID"></select>
                                         <span asp-validation-for="Repair.ReportID" class="text-danger"></span>
                                     </div>
-                                    <div class="form-group">
 
-                                        <input hidden asp-for="Repair.Repair_EmployeeID" class="form-control" value=@Model.Employee1.EmployeeID />
-
-                                    </div>
 
 
 
@@ -75,7 +78,19 @@
                         <div class="col">
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    <label asp-for="Repair.Type" class="control-label"></label> :
+                                    <label class="control-label" style="font-weight:bold">Status:</label>
+                                    &nbsp; <label>S1: On Fixing </label>
+                                    <input hidden asp-for="Repair.Status" class="form-control" value="S1: On Fixing" />
+                                    <br />
+                                    <br />
+
+                                    <label class="control-label" style="font-weight:bold">AssetID :</label>
+                                    &nbsp; <label>@Model.Repair.Repair_ReportID.Report_AssetID.AssetName </label> 
+                                   
+                                    <br />
+                                    <br />
+
+                                    <label asp-for="Repair.Type" class="control-label" style="font-weight:bold"> </label> :
 
                                     <select asp-for="Repair.Type" class="form-control">
                                         <option>Hardware</option>

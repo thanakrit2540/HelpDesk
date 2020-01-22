@@ -22,6 +22,7 @@ namespace HelpDesk.Pages.Repairs
         [BindProperty]
         public Repair Repair { get; set; }
 
+        public IList<Report> Report { get; set; }
         public Employee Employee1 { get; set; }
 
         public IList<Employee> Employees { get; set; }
@@ -38,6 +39,10 @@ namespace HelpDesk.Pages.Repairs
             Employees = await _context.Employee
                 .Where(r => r.EmployeeID == Employee1.EmployeeID).ToListAsync();
 
+            Report = await _context.Report
+               .Include(r => r.Report_AssetID)
+               .ToListAsync();
+
             Repair = await _context.Repair
                 .Include(r => r.Repair_ReportID).FirstOrDefaultAsync(m => m.RepairID == id);
 
@@ -51,28 +56,13 @@ namespace HelpDesk.Pages.Repairs
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+           
 
             _context.Attach(Repair).State = EntityState.Modified;
 
-            try
-            {
+          
                 await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RepairExists(Repair.RepairID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+           
 
             return RedirectToPage("./Index");
         }
