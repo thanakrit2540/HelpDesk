@@ -120,7 +120,7 @@ namespace HelpDesk.Pages.Reports
 
 
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./../Includes/ShowJob");
 
 
 

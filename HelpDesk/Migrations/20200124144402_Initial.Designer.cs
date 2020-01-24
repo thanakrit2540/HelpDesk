@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HelpDesk.Migrations
 {
     [DbContext(typeof(HelpDeskContext))]
-    [Migration("20200122180519_Initial")]
+    [Migration("20200124144402_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -350,6 +350,9 @@ namespace HelpDesk.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Cause")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("Date_Finish")
                         .HasColumnType("datetime2");
 
@@ -375,6 +378,12 @@ namespace HelpDesk.Migrations
 
                     b.Property<string>("Type")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("behavior")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("solving")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RepairID");

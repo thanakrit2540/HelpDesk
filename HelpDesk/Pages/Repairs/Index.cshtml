@@ -49,6 +49,9 @@
                                     @Html.DisplayNameFor(model => model.Repair[0].RepairID)
                                 </th>
                                 <th>
+                                    ReportID
+                                </th>
+                                <th>
                                     @Html.DisplayNameFor(model => model.Repair[0].Date_Start)
                                 </th>
                                 <th>
@@ -81,6 +84,9 @@
                                     @Html.DisplayFor(modelItem => item.RepairName)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.Repair_ReportID.ReportName)
+                                </td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.Date_Start)
                                 </td>
 
@@ -104,73 +110,73 @@
 
                                 @if (item.Type == "-")
                                 {
-                            <td align="center">
-                                @Html.DisplayFor(modelItem => item.Type)
-                            </td>
+                                    <td align="center">
+                                        @Html.DisplayFor(modelItem => item.Type)
+                                    </td>
                                 }
                                 else
                                 {
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Type)
-                            </td>
-
-                                        }
-                                       
-
-
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Status)
+                                        @Html.DisplayFor(modelItem => item.Type)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Repair_ReportID.Report_AssetID.AssetName)
-                                    </td>
-                                    <td>
-                                        @foreach (var item1 in Model.Employee)
+
+                                }
+
+
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Repair_ReportID.Report_AssetID.AssetName)
+                                </td>
+                                <td>
+                                    @foreach (var item1 in Model.Employee)
+                                    {
+                                        if (item1.EmployeeID == item.Repair_EmployeeID)
                                         {
-                                            if (item1.EmployeeID == item.Repair_EmployeeID)
-                                            {
-                                                @Html.DisplayFor(modelItem => item1.FirstName);
-                                                <a></a> @Html.DisplayFor(modelItem => item1.LastName);
-                                            }
+                                            @Html.DisplayFor(modelItem => item1.FirstName);
+                                            <a></a> @Html.DisplayFor(modelItem => item1.LastName);
+                                        }
+                                    }
+
+
+
+                                </td>
+                                <td align="center">
+                                    @{ if (Model.Repair[i].Status == "S2: Sucessful")
+                                        {
+
+                                        }
+                                        else if (Model.Repair[i].Status == "S3: Can't fix")
+                                        {
+
+                                        }
+                                        else
+                                        {
+                                            <a asp-page="./Edit" asp-route-id="@item.RepairID">Manage</a>
+                                            <label>| </label>
                                         }
 
 
+                                    }
 
-                                    </td>
-                                    <td align="center">
-                                        @{ if (Model.Repair[i].Status == "S2: Sucessful")
-                                            {
-
-                                            }
-                                            else if (Model.Repair[i].Status == "S3: Can't fix")
-                                            {
-
-                                            }
-                                            else
-                                            {
-                                                <a asp-page="./Edit" asp-route-id="@item.RepairID">Manage</a>
-                                                <label>| </label>
-                                            }
-
+                                    <a asp-page="./Details" asp-route-id="@item.RepairID">Details</a>
+                                    @{ if (Model.Repair[i].Status == "S2: Sucessful")
+                                        {
 
                                         }
+                                        else if (Model.Repair[i].Status == "S3: Can't fix")
+                                        {
 
-                                        <a asp-page="./Details" asp-route-id="@item.RepairID">Details</a>
-                                        @{ if (Model.Repair[i].Status == "S2: Sucessful")
-                                            {
-
-                                            }
-                                            else if (Model.Repair[i].Status == "S3: Can't fix")
-                                            {
-
-                                            }
-                                            else
-                                            {
-                                                <a>|</a> <a asp-page="./Delete" asp-route-id="@item.RepairID"> Delete</a>
-                                            }
                                         }
-                                    </td>
-                                </tr>
+                                        else
+                                        {
+                                            <a>|</a> <a asp-page="./Delete" asp-route-id="@item.RepairID"> Delete</a>
+                                        }
+                                    }
+                                </td>
+                            </tr>
                                 
 
                                 i++;

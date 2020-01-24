@@ -12,24 +12,24 @@ namespace HelpDesk.Models
         public int ReportID { get; set; }
 
         [Required]
-        public string ReportName { get; set; }
+        public string ReportName { get; set; }//ID แทน ReportID 
 
         [Required]
-        public string Title { get; set; }
+        public string Title { get; set; }// หัวข้อ
         [Required]
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; }// วันที่ทำการ แจ้ง
 
-        public string Note { get; set; }
+        public string Note { get; set; }// รายละเอียด
 
        
         [Required]
-        public string Status { get; set; }
+        public string Status { get; set; }//สถานะการแจ้ง
 
         public virtual Asset Report_AssetID { get; set; }
 
         public int AssetID { get; set; }
 
-        public int Report_EmployeeID { get; set; }
+        public int Report_EmployeeID { get; set; }//ID ของพนักงานที่ทำการแจ้ง
 
        
 

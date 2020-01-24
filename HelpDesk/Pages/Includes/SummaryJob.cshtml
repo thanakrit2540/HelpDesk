@@ -1,0 +1,81 @@
+﻿@page
+@model HelpDesk.SummaryJobModel
+
+@{
+    ViewData["Title"] = "SummaryJob";
+}
+    <script>
+                                document.getElementById("name").innerHTML = "@Model.Employees[0].FirstName.ToString()";
+                                document.getElementById("lastname").innerHTML = "@Model.Employees[0].LastName.ToString()";
+                                document.getElementById("position").innerHTML = "@Model.Employees[0].Position.PositionName.ToString()";
+                                document.getElementById("name1").innerHTML = "@Model.Employees[0].FirstName.ToString()";
+                                document.getElementById("lastname1").innerHTML = "@Model.Employees[0].LastName.ToString()";
+                                document.getElementById("position1").innerHTML = "@Model.Employees[0].Position.PositionName.ToString()";
+    </script>
+<h2>SummaryJob</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Repair[0].RepairName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Repair[0].Date_Start)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Repair[0].Date_Finish)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Repair[0].Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Repair[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Repair[0].Repair_ReportID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Repair[0].Repair_EmployeeID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Repair) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RepairName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_Start)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_Finish)
+            </td>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Repair_ReportID.ReportName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Repair_EmployeeID)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.RepairID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.RepairID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.RepairID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

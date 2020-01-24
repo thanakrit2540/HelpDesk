@@ -132,15 +132,17 @@ namespace HelpDesk
             
                 
             
-            a.OrderByDescending(r => r.count).ToList();
-            Report_Asset_Count = a;
-
-
            
 
-
-
             
+            Report_Asset_Count = a.OrderByDescending(r => r.count).ToList();
+
+
+
+
+
+
+
 
 
 

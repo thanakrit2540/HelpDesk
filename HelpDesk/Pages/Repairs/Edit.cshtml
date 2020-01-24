@@ -54,6 +54,24 @@
                                     <br />
                                     <br />
 
+                                    <div class="form-group">
+                                        <label asp-for="Repair.Behavior" class="control-label"></label> :
+                                        <textarea asp-for="Repair.Behavior" class="form-control" rows="5"></textarea>
+                                        <span asp-validation-for="Repair.Behavior" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="Repair.Cause" class="control-label"></label> :
+                                        <textarea asp-for="Repair.Cause" class="form-control" rows="5"></textarea>
+                                        <span asp-validation-for="Repair.Cause" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="Repair.Solving" class="control-label"></label> :
+                                        <textarea asp-for="Repair.Solving" class="form-control" rows="5"></textarea>
+                                        <span asp-validation-for="Repair.Solving" class="text-danger"></span>
+                                    </div>
+
                                     <label asp-for="Repair.Date_Finish" class="control-label" style="font-weight:bold"> </label> :
                                     <input asp-for="Repair.Date_Finish" class="form-control" />
                                     <span asp-validation-for="Repair.Date_Finish" class="text-danger"></span>

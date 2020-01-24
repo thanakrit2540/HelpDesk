@@ -72,7 +72,7 @@
                                         <label asp-for="Report.Status" class="control-label" style="font-weight:bold"></label><b>:</b>
 
                                         &nbsp; <label>S1: New </label>
-                                        <input hidden asp-for="Report.Status" class="form-control" value="S1: New" readonly />
+                                        <input hidden asp-for="Report.Status" class="form-control" value="S1: New" />
                                     </div>
                                     <br />
                                    
@@ -93,7 +93,7 @@
             <br />
             <div class="form-group row" style=" margin-right:0% ; margin-top:1%">
                 <div class="col">
-                    <a asp-page="./Index"><button type="button" class="btn btn-link">< - - Back to List</button></a>
+                    <a asp-page="./../Includes/ShowJob"><button type="button" class="btn btn-link">< - - Back to List</button></a>
                 </div>
                 <div class="col">
                     <input style="float:right" type="submit" value="Create" asp-route-id="@Model.Employee1.EmployeeID" class="btn btn-outline-secondary brands-modal" />

@@ -58,7 +58,7 @@ namespace HelpDesk.Pages.Repairs
             {
                 return NotFound();
             }
-            ViewData["ReportID"] = new SelectList(_context.Report, "ReportID", "ReportID");
+            ViewData["ReportID"] = new SelectList(_context.Report, "ReportID", "ReportName");
             ViewData["AssetID"] = new SelectList(_context.Asset, "AssetID", "AssetID");
             return Page();
         }
