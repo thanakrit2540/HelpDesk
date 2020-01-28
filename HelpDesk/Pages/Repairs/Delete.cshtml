@@ -71,7 +71,7 @@
                         <input asp-for="Repair.RepairName" class="form-control" />
                         <span asp-validation-for="Repair.RepairName" class="text-danger"></span>
                     </div>
-                   
+
                     <div hidden class="form-group">
                         <label asp-for="Repair.Note" class="control-label"></label>
                         <input asp-for="Repair.Note" class="form-control" />
@@ -105,6 +105,22 @@
                         <input asp-for="Report.ReportName" class="form-control" />
                         <span asp-validation-for="Report.ReportName" class="text-danger"></span>
                     </div>
+                    <div class="form-group">
+
+                        <input hidden asp-for="Repair.Behavior" class="form-control" />
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <input hidden asp-for="Repair.Cause" class="form-control" />
+
+                    </div>
+                    <div class="form-group">
+
+                        <input hidden asp-for="Repair.Solving" class="form-control" />
+
+                    </div>
                     <div hidden class="form-group">
                         <label asp-for="Report.Title" class="control-label"></label>
                         <input asp-for="Report.Title" class="form-control" />
@@ -120,7 +136,7 @@
                         <input asp-for="Report.Note" class="form-control" />
                         <span asp-validation-for="Report.Note" class="text-danger"></span>
                     </div>
-                  
+
                     <div hidden class="form-group">
 
                         <input asp-for="Report.Status" class="form-control" value="S3: Resolved" />

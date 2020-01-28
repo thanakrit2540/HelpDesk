@@ -76,6 +76,33 @@
                                         </div>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td><b>@Html.DisplayNameFor(model => model.Repair.Behavior) :</b></td>
+                                    <td>
+
+                                        <div class="form-group">
+                                            <textarea class="form-control" id="exampleFormControlTextarea3" rows="5" cols='20' readonly>@Html.DisplayFor(model => model.Repair.Note)</textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>@Html.DisplayNameFor(model => model.Repair.Cause) :</b></td>
+                                    <td>
+
+                                        <div class="form-group">
+                                            <textarea class="form-control" id="exampleFormControlTextarea3" rows="5" cols='20' readonly>@Html.DisplayFor(model => model.Repair.Note)</textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>@Html.DisplayNameFor(model => model.Repair.Solving) :</b></td>
+                                    <td>
+
+                                        <div class="form-group">
+                                            <textarea class="form-control" id="exampleFormControlTextarea3" rows="5" cols='20' readonly>@Html.DisplayFor(model => model.Repair.Note)</textarea>
+                                        </div>
+                                    </td>
+                                </tr>
 
                             </tbody>
                         </table>
@@ -106,13 +133,28 @@
                             <span asp-validation-for="Repair.Note" class="text-danger"></span>
                         </div>
                         <div hidden class="form-group">
+                            <label asp-for="Repair.Solving" class="control-label"></label>
+                            <input asp-for="Repair.Solving" class="form-control" />
+                            <span asp-validation-for="Repair.Solving" class="text-danger"></span>
+                        </div>
+                        <div hidden class="form-group">
+                            <label asp-for="Repair.Cause" class="control-label"></label>
+                            <input asp-for="Repair.Cause" class="form-control" />
+                            <span asp-validation-for="Repair.Cause" class="text-danger"></span>
+                        </div>
+                        <div hidden class="form-group">
+                            <label asp-for="Repair.Behavior" class="control-label"></label>
+                            <input asp-for="Repair.Behavior" class="form-control" />
+                            <span asp-validation-for="Repair.Behavior" class="text-danger"></span>
+                        </div>
+                        <div hidden class="form-group">
                             <label asp-for="Repair.Type" class="control-label"></label>
                             <input asp-for="Repair.Type" class="form-control" />
                             <span asp-validation-for="Repair.Type" class="text-danger"></span>
                         </div>
                         <div class="form-group">
 
-                            <input hidden asp-for="Repair.Status" class="form-control" value="S2: Sucessful" />
+                            <input hidden asp-for="Repair.Status" class="form-control" value="S2: Solve" />
 
                         </div>
                         <div hidden class="form-group">
@@ -148,10 +190,10 @@
                             <input asp-for="Report.Note" class="form-control" />
                             <span asp-validation-for="Report.Note" class="text-danger"></span>
                         </div>
-                     
+
                         <div class="form-group">
 
-                            <input hidden asp-for="Report.Status" class="form-control" value="S3: Resolved" />
+                            <input hidden asp-for="Report.Status" class="form-control" value="S3: Succeed" />
 
                         </div>
                         <div hidden class="form-group">
@@ -161,18 +203,14 @@
                         </div>
                         <div class="form-group">
 
-                            <input hidden asp-for="Report.Report_EmployeeID" class="form-control" value=2 />
+                            <input hidden asp-for="Report.Report_EmployeeID" class="form-control" />
 
                         </div>
 
-                        @{ if (Model.Repair.Status == "S2: Sucessful")
+                        @{ if (Model.Repair.Status == "S2: Solve")
                             {
 
-                            }
-                            else if (Model.Repair.Status == "S3: Can't fix")
-                            {
-
-                            }
+                            }                           
                             else
                             {
                                 <div class="form-group">

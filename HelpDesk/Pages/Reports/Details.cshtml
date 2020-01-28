@@ -163,7 +163,7 @@
                             <span asp-validation-for="Report.Report_EmployeeID" class="text-danger"></span>
                         </div>
 
-                        @{ if (Model.Report.Status == "S1: New")
+                        @{ if (Model.Report.Status == "S1: Wait for repair")
                             {
                                 @if (Model.Employee1.Position.PositionID == 1)
                                 {

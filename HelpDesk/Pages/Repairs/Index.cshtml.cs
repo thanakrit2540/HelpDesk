@@ -43,6 +43,7 @@ namespace HelpDesk.Pages.Repairs
 
             Repair = await _context.Repair
                 .Include(r => r.Repair_ReportID)
+                .Where(r => r.Repair_EmployeeID == Employee1.EmployeeID)
                 .ToListAsync();
 
           

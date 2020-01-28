@@ -34,7 +34,7 @@
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                                     <label asp-for="Repair.Date_Start" class="control-label"></label> :
-                                    <input asp-for="Repair.Date_Start" class="form-control"  />
+                                    <input asp-for="Repair.Date_Start" class="form-control" />
 
                                     <span asp-validation-for="Repair.Date_Start" class="text-danger"></span>
 
@@ -46,9 +46,24 @@
                                         <input hidden asp-for="Repair.Status" class="form-control" value="Fixing" />
 
                                     </div>
-                                    <div hidden class="form-group">
+                                    <div class="form-group">
+
+                                        <input hidden asp-for="Repair.Behavior" class="form-control" />
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <input hidden asp-for="Repair.Cause" class="form-control"  />
+
+                                    </div>
+                                    <div class="form-group">
+
+                                        <input hidden asp-for="Repair.Solving" class="form-control"  />
+
+                                    </div><div hidden class="form-group">
                                         <label asp-for="Repair.ReportID" class="control-label"></label>
-                                        <select asp-for="Repair.ReportID" class="form-control"  asp-items="ViewBag.ReportID"></select>
+                                        <select asp-for="Repair.ReportID" class="form-control" asp-items="ViewBag.ReportID"></select>
                                     </div>
                                     <div class="form-group">
 

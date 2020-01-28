@@ -26,7 +26,7 @@
                         <a asp-page="../Reports/Create">
                             <button type="button" class="btn btn-outline-secondary brands-modal">
 
-                                Create
+                                Report
                             </button>
                         </a>
                         <!--<a class="btn btn-info" asp-page="Create">Create New</a>-->
@@ -45,6 +45,10 @@
 
                                 <th>
                                     Title
+                                </th>
+
+                                <th>
+                                    Status
                                 </th>
 
                                 <th>
@@ -70,117 +74,215 @@
                             @{ var i = 0;}
                             @foreach (var item in Model.Report)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ReportName)
-                                </td>
-
-
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Status)
-                                </td>
-
-
-
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Date)
-                                </td>
-
-
-
-
-
-                                @{ Boolean flage6 = false;}
-                                @foreach (var item2 in Model.Repair)
-                                {
-
-                                    if (item2.Repair_ReportID.ReportID == item.ReportID && item2.Status != "S1: On Fixing")
-                                    {
-                                        flage6 = true;
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item2.Date_Finish)
-                                        </td>
-
-                                    }
-
-
-
-                                }
-                                @if (flage6 == false)
-                                {
-                                    <td align="center">
-                                        <a>-</a>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ReportName)
                                     </td>
-                                }
-                                <td>
-                                    @foreach (var item1 in Model.Employee)
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Status)
+                                    </td>
+
+
+
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Date)
+                                    </td>
+
+
+
+
+
+                                    @{ Boolean flage6 = false;}
+                                    @foreach (var item2 in Model.Repair)
                                     {
-                                        if (item1.EmployeeID == item.Report_EmployeeID)
+
+                                        if (item2.Repair_ReportID.ReportID == item.ReportID && item2.Status != "S1: Wait for repair")
                                         {
-                                            @Html.DisplayFor(modelItem => item1.FirstName);
-                                            <a></a> @Html.DisplayFor(modelItem => item1.LastName);
-                                        }
-                                    }
-                                </td>
-
-
-
-                                @{ Boolean flage = false;}
-                                @foreach (var item2 in Model.Repair)
-                                {
-                                    @foreach (var item1 in Model.Employee)
-                                    {
-                                        if (item2.Repair_ReportID.ReportID == item.ReportID && item2.Repair_EmployeeID == item1.EmployeeID)
-                                        {
-                                            flage = true;
-
+                                            flage6 = true;
                                             <td>
-                                                @Html.DisplayFor(modelItem => item1.FirstName)
-                                                <a></a>@Html.DisplayFor(modelItem => item1.LastName)
+                                                @Html.DisplayFor(modelItem => item2.Date_Finish)
                                             </td>
+
                                         }
 
-                                    }
 
-                                }
-                                @if (flage == false)
-                                {
-                                    <td align="center">
-                                        <a>-</a>
+
+                                    }
+                                    @if (flage6 == false)
+                                    {
+                                        <td align="center">
+                                            <a>-</a>
+                                        </td>
+                                    }
+                                    <td>
+                                        @foreach (var item1 in Model.Employee)
+                                        {
+                                            if (item1.EmployeeID == item.Report_EmployeeID)
+                                            {
+                                                @Html.DisplayFor(modelItem => item1.FirstName);
+                                                <a></a> @Html.DisplayFor(modelItem => item1.LastName);
+                                            }
+                                        }
                                     </td>
-                                }
-                                <td align="center">
-                                    @{ if (Model.Report[i].Status == "S2: Sucessful")
+
+
+
+                                    @{ Boolean flage = false;}
+                                    @foreach (var item2 in Model.Repair)
+                                    {
+                                        @foreach (var item1 in Model.Employee)
                                         {
+                                            if (item2.Repair_ReportID.ReportID == item.ReportID && item2.Repair_EmployeeID == item1.EmployeeID)
+                                            {
+                                                flage = true;
+
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item1.FirstName)
+                                                    <a></a>@Html.DisplayFor(modelItem => item1.LastName)
+                                                </td>
+                                            }
 
                                         }
-                                        else if (Model.Report[i].Status == "S3: Can't fix")
+
+                                    }
+                                    @if (flage == false)
+                                    {
+                                        <td align="center">
+                                            <a>-</a>
+                                        </td>
+                                    }
+                                <td align="center">
+                                    @{ if (Model.Report[i].Status == "S3: Succeed")
                                         {
 
                                         }
                                         else
                                         {
-                                            <a asp-page="./../Repairs/Edit" asp-route-id="@item.ReportID">Manage</a>
-                                            <label>| </label>
+                                            <a asp-page="./../Reports/Details" asp-route-id="@item.ReportID">Detail</a>
+
+
+
                                         }
 
 
                                     }
 
-                                    <a asp-page="./../Reports/Details" asp-route-id="@item.ReportID">Details</a>
-                                    @{ if (Model.Report[i].Status == "S2: Sucessful")
-                                        {
 
-                                        }
-                                        else if (Model.Report[i].Status == "S3: Can't fix")
+                                    @{ if (Model.Report[i].Status == "S3: Succeed" || Model.Report[i].Status == "S2: In Process")
                                         {
-
                                         }
                                         else
                                         {
-                                            <a>|</a> <a asp-page="./../Repairs/Delete" asp-route-id="@item.ReportID"> Delete</a>
+                                            <label>| </label>
+                                            <form method="post">
+                                                <!--     Repair ( Create )           -->
+                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                <div hidden class="form-group">
+                                                    <label asp-for="Repairs.Date_Start" class="control-label"></label>
+                                                    <input asp-for="Repairs.Date_Start" class="form-control" />
+                                                    <span asp-validation-for="Repairs.Date_Start" class="text-danger"></span>
+                                                </div>
+                                                <div hidden class="form-group">
+                                                    <label asp-for="Repairs.Date_Finish" class="control-label"></label>
+                                                    <input asp-for="Repairs.Date_Finish" class="form-control" />
+                                                    <span asp-validation-for="Repairs.Date_Finish" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <input hidden asp-for="Repairs.Behavior" class="form-control" value="-" />
+
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <input hidden asp-for="Repairs.Solving" class="form-control" value="-" />
+
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <input hidden asp-for="Repairs.Cause" class="form-control" value="-" />
+
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <input hidden asp-for="Repairs.Note" class="form-control" value="-" />
+
+                                                </div>
+                                                <div class="form-group">
+
+
+                                                    <input hidden asp-for="Repairs.Type" class="form-control" value="-" />
+
+
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <input hidden asp-for="Repairs.Status" class="form-control" value="S1: On Fixing" />
+
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <input hidden asp-for="Repairs.ReportID" class="form-control" value=@item.ReportID />
+
+
+                                                </div>
+                                                <div class="form-group">
+
+
+                                                    <input hidden asp-for="Repairs.Repair_EmployeeID" class="form-control" value=@Model.Employee1.EmployeeID />
+
+                                                </div>
+                                                <!--     Report ( Status -> In Process! )           -->
+                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                <input type="hidden" asp-for="Reports.ReportID" value="@item.ReportID" />
+                                                <div hidden class="form-group">
+                                                    <label asp-for="Reports.ReportName" class="control-label"></label>
+                                                    <input asp-for="Reports.ReportName" class="form-control" value="@item.ReportName" />
+                                                    <span asp-validation-for="Reports.ReportName" class="text-danger"></span>
+                                                </div>
+                                                <div hidden class="form-group">
+                                                    <label asp-for="Reports.Title" class="control-label"></label>
+                                                    <input asp-for="Reports.Title" class="form-control" value="@item.Title" />
+                                                    <span asp-validation-for="Reports.Title" class="text-danger"></span>
+                                                </div>
+                                                <div hidden class="form-group">
+                                                    <label asp-for="Reports.Date" class="control-label"></label>
+                                                    <input asp-for="Reports.Date" class="form-control" />
+                                                    <span asp-validation-for="Reports.Date" class="text-danger"></span>
+                                                </div>
+                                                <div hidden class="form-group">
+                                                    <label asp-for="Reports.Note" class="control-label"></label>
+                                                    <input asp-for="Reports.Note" class="form-control" value="@item.Note" />
+                                                    <span asp-validation-for="Reports.Note" class="text-danger"></span>
+                                                </div>
+
+                                                <div class="form-group">
+
+                                                    <input hidden asp-for="Reports.Status" class="form-control" value="S2: In Process" />
+
+                                                </div>
+                                                <div hidden class="form-group">
+                                                    <label asp-for="Reports.AssetID" class="control-label"></label>
+                                                    <input asp-for="Reports.AssetID" class="form-control" value="@item.AssetID" />
+                                                    <span asp-validation-for="Reports.AssetID" class="text-danger"></span>
+                                                </div>
+                                                <div hidden class="form-group">
+                                                    <label asp-for="Reports.Report_EmployeeID" class="control-label"></label>
+                                                    <input asp-for="Reports.Report_EmployeeID" class="form-control" value="@item.Report_EmployeeID" />
+                                                    <span asp-validation-for="Reports.Report_EmployeeID" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <input type="submit" value="Accept" class="btn btn-outline-secondary brands-modal" style="margin-left:15px" />
+
+                                                </div>
+                                            </form>
+
                                         }
                                     }
                                 </td>
@@ -188,10 +290,10 @@
 
 
 
-                            </tr>
+                                </tr>
                                 i++;
                             }
-                          
+
                             <script>
                                 document.getElementById("name").innerHTML = "@Model.Employee[0].FirstName.ToString()";
                                 document.getElementById("lastname").innerHTML = "@Model.Employee[0].LastName.ToString()";
@@ -207,3 +309,4 @@
         </div>
     </div>
 </div>
+
