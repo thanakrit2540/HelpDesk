@@ -2,7 +2,7 @@
 @model HelpDesk.SummaryJobModel
 
 @{
-    ViewData["Title"] = "SummaryJob";
+    ViewData["Title"] = "Summary Job";
 
 }
 
@@ -14,20 +14,20 @@
                                 document.getElementById("lastname1").innerHTML = "@Model.Employees[0].LastName.ToString()";
                                 document.getElementById("position1").innerHTML = "@Model.Employees[0].Position.PositionName.ToString()";
 </script>
-<h2 style="margin-left:15px">Repair</h2>
+<h2 style="margin-left:15px">Job Summary</h2>
 <div id="content-wrapper">
     <div class="container-fluid">
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item active">HelpDesk</li>
-            <li class="breadcrumb-item active">SummaryJob</li>
+            <li class="breadcrumb-item active">Job Summary</li>
 
         </ol>
         <!-- DataTables Example -->
         <div class="card mb-3">
             <div class="card-header">
                 <div class="dataTable_length">
-                    <i class="fas fa-hammer">&nbsp;Repair</i>
+                    <i class="fas fa-hammer">&nbsp;Job Summary</i>
                     <div hidden style="float: right">
                         <a asp-page="Create">
                             <button type="button" class="btn btn-outline-secondary brands-modal">
